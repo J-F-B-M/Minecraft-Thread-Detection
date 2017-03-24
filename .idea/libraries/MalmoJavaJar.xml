@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MalmoJavaJar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/MalmoJavaJar.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
