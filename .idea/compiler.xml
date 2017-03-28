@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Bachelorarbeit" />
+        <module name="common" />
+        <module name="minecraft" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="Bachelorarbeit" target="1.8" />
+      <module name="common" target="1.8" />
+      <module name="minecraft" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

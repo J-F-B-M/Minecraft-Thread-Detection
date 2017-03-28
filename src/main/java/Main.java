@@ -124,10 +124,10 @@ public class Main {
         return 0xFF000000 + r + g + b;
     }
 
-    private static short getColor(int i, int x, int y, ByteVector pixels) {
+    private static short getColor(int channel, int x, int y, ByteVector pixels) {
         int w = 320;
         int h = 240;
-        return pixels.get(i * w * h + y * w + x);
+        return pixels.get(channel * w * h + x * h + y);
         //return pixels.get(x*w+y+i);
     }
 }

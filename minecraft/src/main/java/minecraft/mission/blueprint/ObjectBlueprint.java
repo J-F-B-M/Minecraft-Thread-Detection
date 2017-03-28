@@ -1,0 +1,59 @@
+package minecraft.mission.blueprint;
+
+import minecraft.mission.blueprint.utility.Coordinate;
+import minecraft.mission.blueprint.utility.RelativeCoordinate;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
+/**
+ * Created by Joachim Brehmer on 13.03.2017.
+ */
+public class ObjectBlueprint {
+    private final Coordinate origin;
+    private final List<RelativeCoordinate> blocks;
+
+    public ObjectBlueprint(Coordinate origin) {
+        this(origin, new LinkedList<>());
+    }
+
+    private ObjectBlueprint(Coordinate origin, List<RelativeCoordinate> blocks) {
+        this.origin = origin;
+        this.blocks = blocks;
+    }
+
+    public void addBlock(long xOffset, long yOffset, long zOffset, String blockType) {
+        if (blockType == null) {
+            throw new IllegalArgumentException("Need to set a block-type");
+        }
+        RelativeCoordinate relCoord = new RelativeCoordinate(origin, xOffset, yOffset, zOffset, blockType);
+        blocks.add(relCoord);
+    }
+
+    public ObjectBlueprint rotateAroundX(int times) {
+        return new ObjectBlueprint(origin, blocks.stream().map(r -> r.rotateAroundX(times)).collect(toList()));
+    }
+
+    public ObjectBlueprint rotateAroundY(int times) {
+        return new ObjectBlueprint(origin, blocks.stream().map(r -> r.rotateAroundY(times)).collect(toList()));
+    }
+
+    public ObjectBlueprint rotateAroundZ(int times) {
+        return new ObjectBlueprint(origin, blocks.stream().map(r -> r.rotateAroundZ(times)).collect(toList()));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (RelativeCoordinate block : blocks) {
+            Coordinate coord = block.getCoordinate();
+            String drawBlock = String.format("<DrawBlock type=\"%s\" x=\"%d\" y=\"%d\" z=\"%d\"/>", block.block, coord.x, coord.y, coord.z);
+            sb.append(drawBlock).append("\n");
+        }
+
+        return sb.toString();
+    }
+}
