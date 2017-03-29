@@ -1,6 +1,7 @@
 package minecraft.mission;
 
 import com.microsoft.msr.malmo.MissionSpec;
+import minecraft.mission.blueprint.ObjectBlueprint;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -9,5 +10,11 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class MissionBuilder {
     public MissionSpec getMissionSpec() {
         throw new NotImplementedException();
+    }
+
+
+    public MissionBuilder addBlueprint(ObjectBlueprint blueprint) {
+        throw new NotImplementedException();
+        //return this;
     }
 }
