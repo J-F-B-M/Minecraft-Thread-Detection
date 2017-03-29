@@ -3,7 +3,6 @@ package logging;
 import provider.IObservable;
 import provider.IObserver;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
