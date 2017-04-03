@@ -1,14 +1,16 @@
 package minecraft.mission.blueprint.utility;
 
+import minecraft.xml.DrawBlock;
+
 /**
  * Created by Joachim Brehmer on 13.03.2017.
  */
 public class RelativeCoordinate {
-    public final Coordinate origin;
-    public final long xOffset, yOffset, zOffset;
-    public final String block;
+    private final Coordinate origin;
+    private final int xOffset, yOffset, zOffset;
+    public final Block block;
 
-    public RelativeCoordinate(Coordinate origin, long xOffset, long yOffset, long zOffset, String block) {
+    public RelativeCoordinate(Coordinate origin, int xOffset, int yOffset, int zOffset, Block block) {
         if (origin == null) {
             throw new IllegalArgumentException("Origin required");
         }
@@ -84,20 +86,33 @@ public class RelativeCoordinate {
         }
     }
 
-    public long getX() {
+    public int getX() {
         return origin.x + xOffset;
     }
 
-    public long getY() {
+    public int getY() {
         return origin.y + yOffset;
     }
 
-    public long getZ() {
+    public int getZ() {
         return origin.z + zOffset;
     }
 
     public Coordinate getCoordinate() {
         return origin.translate(xOffset, yOffset, zOffset);
+    }
+
+    public DrawBlock toSchema() {
+        DrawBlock drawBlock = new DrawBlock();
+        drawBlock.setType(block.type);
+        if (block.variation != null) drawBlock.setVariant(block.variation);
+        if (block.colour != null) drawBlock.setColour(block.colour);
+        if (block.face != null) drawBlock.setFace(block.face);
+        drawBlock.setX(getX());
+        drawBlock.setY(getY());
+        drawBlock.setZ(getZ());
+
+        return drawBlock;
     }
 
     @Override
@@ -117,9 +132,9 @@ public class RelativeCoordinate {
     @Override
     public int hashCode() {
         int result = origin.hashCode();
-        result = 31 * result + (int) (xOffset ^ (xOffset >>> 32));
-        result = 31 * result + (int) (yOffset ^ (yOffset >>> 32));
-        result = 31 * result + (int) (zOffset ^ (zOffset >>> 32));
+        result = 31 * result + xOffset;
+        result = 31 * result + yOffset;
+        result = 31 * result + zOffset;
         result = 31 * result + block.hashCode();
         return result;
     }

@@ -7,8 +7,8 @@ import minecraft.mission.blueprint.utility.Coordinate;
  */
 public class Block extends ObjectBlueprint{
 
-    public Block(Coordinate origin, String type) {
+    public Block(Coordinate origin, minecraft.mission.blueprint.utility.Block block) {
         super(origin);
-        addBlock(0,0,0,type);
+        addBlock(0, 0, 0, block);
     }
 }

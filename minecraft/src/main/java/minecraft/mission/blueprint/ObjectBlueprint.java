@@ -2,6 +2,7 @@ package minecraft.mission.blueprint;
 
 import minecraft.mission.blueprint.utility.Coordinate;
 import minecraft.mission.blueprint.utility.RelativeCoordinate;
+import minecraft.xml.DrawObjectType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class ObjectBlueprint {
         this.blocks = blocks;
     }
 
-    public void addBlock(long xOffset, long yOffset, long zOffset, String blockType) {
+    public void addBlock(int xOffset, int yOffset, int zOffset, minecraft.mission.blueprint.utility.Block blockType) {
         if (blockType == null) {
             throw new IllegalArgumentException("Need to set a block-type");
         }
@@ -44,16 +45,13 @@ public class ObjectBlueprint {
         return new ObjectBlueprint(origin, blocks.stream().map(r -> r.rotateAroundZ(times)).collect(toList()));
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public List<DrawObjectType> toSchema() {
+        List<DrawObjectType> schema = new LinkedList<>();
 
         for (RelativeCoordinate block : blocks) {
-            Coordinate coord = block.getCoordinate();
-            String drawBlock = String.format("<DrawBlock type=\"%s\" x=\"%d\" y=\"%d\" z=\"%d\"/>", block.block, coord.x, coord.y, coord.z);
-            sb.append(drawBlock).append("\n");
+            schema.add(block.toSchema());
         }
 
-        return sb.toString();
+        return schema;
     }
 }

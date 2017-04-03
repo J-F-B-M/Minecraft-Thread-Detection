@@ -8,12 +8,19 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="minecraft" />
+        <module name="neural-network" />
+        <module name="neuralnetwork" />
+        <module name="putting-it-together" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="Bachelorarbeit" target="1.8" />
       <module name="common" target="1.8" />
       <module name="minecraft" target="1.8" />
+      <module name="Minecraft-Threat-Detection" target="1.8" />
+      <module name="neural-network" target="1.8" />
+      <module name="neuralnetwork" target="1.8" />
+      <module name="putting-it-together" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

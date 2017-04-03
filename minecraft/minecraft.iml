@@ -11,7 +11,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="MalmoJavaJar" level="project" />
+    <orderEntry type="library" exported="" name="MalmoJavaJar" level="project" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="library" name="Maven: org.json:json:20160810" level="project" />
   </component>
 </module>

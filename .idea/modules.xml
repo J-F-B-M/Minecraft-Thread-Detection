@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Bachelorarbeit.iml" filepath="$PROJECT_DIR$/Bachelorarbeit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Minecraft-Threat-Detection.iml" filepath="$PROJECT_DIR$/Minecraft-Threat-Detection.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/minecraft/minecraft.iml" filepath="$PROJECT_DIR$/minecraft/minecraft.iml" />
+      <module fileurl="file://$PROJECT_DIR$/neural-network/neural-network.iml" filepath="$PROJECT_DIR$/neural-network/neural-network.iml" />
+      <module fileurl="file://$PROJECT_DIR$/putting-it-together/putting-it-together.iml" filepath="$PROJECT_DIR$/putting-it-together/putting-it-together.iml" />
     </modules>
   </component>
 </project>
