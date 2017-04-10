@@ -75,7 +75,7 @@ public class BigSmallEvenOddClassifier {
             trainDataIter.reset();
             LOGGER.info("Epoch " + i + " complete. Time series evaluation:");
 
-            RegressionEvaluation evaluation = new RegressionEvaluation(2);
+            RegressionEvaluation evaluation = new RegressionEvaluation("Big/Small", "Even/Odd");
 
             //Run evaluation. This is on 25k reviews, so can take some time
             while (testDataIter.hasNext()) {
@@ -83,6 +83,8 @@ public class BigSmallEvenOddClassifier {
                 INDArray features = t.getFeatureMatrix();
                 INDArray labels = t.getLabels();
                 INDArray predicted = net.output(features, true);
+
+                labels = labels.reshape(predicted.shape());
 
                 evaluation.evalTimeSeries(labels, predicted);
             }
