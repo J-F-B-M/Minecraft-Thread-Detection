@@ -1,4 +1,3 @@
-import org.datavec.api.util.files.ShuffledListIterator;
 import org.deeplearning4j.berkeley.Pair;
 import org.deeplearning4j.datasets.iterator.DoublesDataSetIterator;
 import org.deeplearning4j.eval.RegressionEvaluation;
@@ -52,6 +51,7 @@ public class BigSmallEvenOddClassifier {
         testDataIter.setPreProcessor(normalizer);
 
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
+                .seed(140)
                 .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
                 .iterations(1)
                 .weightInit(WeightInit.XAVIER)
@@ -78,7 +78,7 @@ public class BigSmallEvenOddClassifier {
             trainDataIter.reset();
             LOGGER.info("Epoch " + i + " complete. Time series evaluation:");
 
-            RegressionEvaluation evaluation = new RegressionEvaluation("Big/Small", "Even/Odd");
+            RegressionEvaluation evaluation = new RegressionEvaluation("Even/Odd","Trinary/Not");
 
             //Run evaluation. This is on 25k reviews, so can take some time
             while (testDataIter.hasNext()) {
@@ -87,7 +87,9 @@ public class BigSmallEvenOddClassifier {
                 INDArray labels = t.getLabels();
                 INDArray predicted = net.output(features, true);
 
-                evaluation.evalTimeSeries(labels.reshape(1, 2, 1), predicted);
+                labels = labels.reshape(predicted.shape());
+
+                evaluation.evalTimeSeries(labels, predicted);
             }
 
             System.out.println(evaluation.stats());
